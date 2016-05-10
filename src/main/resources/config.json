@@ -1,0 +1,24 @@
+{
+  "envConfig" : {
+    "metricsRegName" : "tokenclip-registry"
+  },
+
+  "verticesConfig" : {
+    "vertices" : [
+      {
+        "className" : "com.rextech.base.vertices.HttpEndpointVerticle",
+        "config" : {
+          "port" : 8081,
+          "handlers" : [
+            {
+              "className" : "com.rextech.base.handlers.MetricsHandler",
+              "path" : "/metrics",
+              "pathType" : "PLAIN",
+              "config" : {}
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
