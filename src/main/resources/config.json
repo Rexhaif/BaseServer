@@ -9,6 +9,10 @@
         "className" : "com.rextech.base.vertices.HttpEndpointVerticle",
         "config" : {
           "port" : 8081,
+          "protector" : {
+            "className" : "com.rextech.base.handlers.ValidAllProtectionHandler",
+            "config" : {}
+          },
           "handlers" : [
             {
               "className" : "com.rextech.base.handlers.MetricsHandler",

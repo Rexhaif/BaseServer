@@ -38,6 +38,15 @@ public class HttpEndpointVerticle extends AbstractVerticle {
         mRouter.route().handler(BodyHandler.create());
         mRouter.route().handler(LoggerHandler.create());
 
+        LOG.info("Loading protector");
+        ConfigurableRtxHandler protector = Utils.<ConfigurableRtxHandler> getInstance(
+                config().getJsonObject("protector").getString("className"),
+                null
+        );
+        protector.configure(config().getJsonObject("protector").getJsonObject("config"));
+        mRouter.route().handler(protector);
+        LOG.info("Protector - (" + config().getJsonObject("protector").getString("className") + ") loaded");
+
         LOG.info("Loading handlers");
         config().getJsonArray("handlers").forEach(
                 obj -> {
